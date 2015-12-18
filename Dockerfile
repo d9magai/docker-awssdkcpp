@@ -32,7 +32,8 @@ RUN mkdir -p $AWSSDKCPP_SRC_DIR \
     && curl -sL $AWSSDKCPP_ARCHIVE_URL | bsdtar -xf- -C $AWSSDKCPP_SRC_DIR \
     && cd $AWSSDKCPP_SRC_DIR/aws-sdk-cpp-$AWSSDKCPP_VERSION \
     && cmake . -DCMAKE_INSTALL_PREFIX=$AWSSDKCPP_PREFIX \
-    && for d in `find $AWSSDKCPP_SRC_DIR/aws-sdk-cpp-master -maxdepth 1 -mindepth 1 -type d -name 'aws-*' -not -name 'aws-cpp-sdk-iam' -not -name 'aws-cpp-sdk-ec2' -not -name '*test*' `; do cd $d && make && make install; done \
+    && make -s \
+    && make -s install \
     && rm -rf $AWSSDKCPP_SRC_DIR
 RUN echo "$AWSSDKCPP_PREFIX/lib/linux/intel64/" > /etc/ld.so.conf.d/awssdkcpp.conf && ldconfig
 
