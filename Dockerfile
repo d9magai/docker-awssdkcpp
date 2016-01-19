@@ -16,13 +16,13 @@ RUN yum update -y && yum install -y \
 RUN curl -s $CMAKE3_EPEL_URL > /etc/yum.repos.d/`basename $CMAKE3_EPEL_URL`
 RUN yum update -y && yum install -y \
     make \
-    gcc-c++ \
+    devtoolset-3-gcc-c++ \
     bsdtar \
     libcurl-devel \
     openssl-devel \
     cmake3 \
     && yum clean all
-ENV PATH /usr/lib/cmake3/bin/:$PATH
+ENV PATH /opt/rh/devtoolset-3/root/usr/bin/:/usr/lib/cmake3/bin/:$PATH
 
 RUN mkdir -p $AWSSDKCPP_SRC_DIR \
     && curl -sL $AWSSDKCPP_ARCHIVE_URL | bsdtar -xf- -C $AWSSDKCPP_SRC_DIR \
