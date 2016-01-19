@@ -8,7 +8,11 @@ ENV AWSSDKCPP_SRC_DIR $AWSSDKCPP_PREFIX/src
 ENV AWSSDKCPP_VERSION master
 ENV AWSSDKCPP_ARCHIVE_URL https://github.com/awslabs/aws-sdk-cpp/archive/$AWSSDKCPP_VERSION.zip
 
-RUN yum update -y && yum install -y epel-release && yum clean all
+RUN yum update -y && yum install -y \
+    epel-release \
+    centos-release-scl-rh \
+    && yum clean all
+
 RUN curl -s $CMAKE3_EPEL_URL > /etc/yum.repos.d/`basename $CMAKE3_EPEL_URL`
 RUN yum update -y && yum install -y \
     make \
