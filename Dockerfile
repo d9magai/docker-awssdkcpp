@@ -13,7 +13,7 @@ RUN yum update -y && yum install -y \
     centos-release-scl-rh \
     && yum clean all
 
-RUN curl -s $CMAKE3_EPEL_URL > /etc/yum.repos.d/`basename $CMAKE3_EPEL_URL`
+RUN curl -sL $CMAKE3_EPEL_URL > /etc/yum.repos.d/`basename $CMAKE3_EPEL_URL`
 RUN yum update -y && yum install -y \
     make \
     devtoolset-3-gcc-c++ \
