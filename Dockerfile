@@ -24,7 +24,7 @@ RUN yum update -y && yum install -y \
 ENV PATH /opt/rh/devtoolset-3/root/usr/bin/:/usr/lib/cmake3/bin/:$PATH
 
 RUN mkdir -p $AWSSDKCPP_SRC_DIR \
-    && curl -sL $AWSSDKCPP_ARCHIVE_URL | bsdtar -xf- -C $AWSSDKCPP_SRC_DIR \
+    && curl -sL $AWSSDKCPP_ARCHIVE_URL | tar -xz -C $AWSSDKCPP_SRC_DIR \
     && cd $AWSSDKCPP_SRC_DIR/aws-sdk-cpp-$AWSSDKCPP_VERSION \
     && cmake . -DCMAKE_INSTALL_PREFIX=$AWSSDKCPP_PREFIX \
     && make -s \
