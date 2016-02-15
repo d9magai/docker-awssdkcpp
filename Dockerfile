@@ -5,8 +5,8 @@ ENV CMAKE3_EPEL_URL https://copr.fedoraproject.org/coprs/g/kdesig/cmake3_EPEL/re
 
 ENV AWSSDKCPP_PREFIX /opt/aws-sdk-cpp
 ENV AWSSDKCPP_SRC_DIR $AWSSDKCPP_PREFIX/src
-ENV AWSSDKCPP_VERSION master
-ENV AWSSDKCPP_ARCHIVE_URL https://github.com/awslabs/aws-sdk-cpp/archive/$AWSSDKCPP_VERSION.zip
+ENV AWSSDKCPP_VERSION 0.9.6
+ENV AWSSDKCPP_ARCHIVE_URL https://github.com/awslabs/aws-sdk-cpp/archive/${AWSSDKCPP_VERSION}.tar.gz
 
 RUN yum update -y && yum install -y \
     epel-release \
