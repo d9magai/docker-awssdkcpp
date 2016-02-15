@@ -17,7 +17,6 @@ RUN cd /etc/yum.repos.d/ && curl -sOL $CMAKE3_EPEL_URL
 RUN yum update -y && yum install -y \
     make \
     devtoolset-3-gcc-c++ \
-    bsdtar \
     libcurl-devel \
     openssl-devel \
     cmake3 \
