@@ -9,10 +9,8 @@ ENV PLANESTRAVELER_CMAKE_EL_EPEL_URL https://copr.fedorainfracloud.org/coprs/pla
 
 RUN yum update -y && yum install -y \
     epel-release \
-    && yum clean all
-
-RUN cd /etc/yum.repos.d/ && curl -sOL ${PLANESTRAVELER_CMAKE_EL_EPEL_URL}
-RUN yum update -y && yum install -y \
+    && cd /etc/yum.repos.d/ && curl -sOL ${PLANESTRAVELER_CMAKE_EL_EPEL_URL} \
+    && yum install -y \
     make \
     gcc-c++ \
     cmake \
