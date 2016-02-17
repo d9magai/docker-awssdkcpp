@@ -15,11 +15,10 @@ RUN cd /etc/yum.repos.d/ && curl -sOL ${PLANESTRAVELER_CMAKE_EL_EPEL_URL}
 RUN yum update -y && yum install -y \
     make \
     gcc-c++ \
+    cmake \
     libcurl-devel \
     openssl-devel \
-    cmake3 \
     && yum clean all
-ENV PATH /usr/lib/cmake3/bin/:$PATH
 
 RUN mkdir -p $AWSSDKCPP_SRC_DIR \
     && curl -sL $AWSSDKCPP_ARCHIVE_URL | tar -xz -C $AWSSDKCPP_SRC_DIR \
