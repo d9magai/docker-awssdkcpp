@@ -6,16 +6,18 @@ ENV AWSSDKCPP_SRC_DIR $AWSSDKCPP_PREFIX/src
 ENV AWSSDKCPP_VERSION 1.0.9
 ENV AWSSDKCPP_ARCHIVE_URL https://github.com/awslabs/aws-sdk-cpp/archive/${AWSSDKCPP_VERSION}.tar.gz
 
-RUN yum update -y && yum install -y \
-    epel-release \
-    && cd /etc/yum.repos.d/ && curl -sOL ${PLANESTRAVELER_CMAKE_EL_EPEL_URL} \
-    && yum install -y \
-    make \
-    gcc-c++ \
-    cmake \
-    libcurl-devel \
-    openssl-devel \
-    && yum clean all
+RUN buildDeps='\
+        g++ \
+        make \
+        cmake \
+        curl \
+        zlib1g-dev \
+        libcurl4-openssl-dev \
+        libssl-dev \
+        uuid-dev' \
+    && set -x \
+    && apt-get update && apt-get install -y $buildDeps --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p $AWSSDKCPP_SRC_DIR \
     && curl -sL $AWSSDKCPP_ARCHIVE_URL | tar -xz -C $AWSSDKCPP_SRC_DIR \
