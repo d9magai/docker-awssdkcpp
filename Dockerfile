@@ -1,4 +1,4 @@
-FROM centos
+FROM debian
 MAINTAINER d9magai
 
 ENV AWSSDKCPP_PREFIX /opt/aws-sdk-cpp
