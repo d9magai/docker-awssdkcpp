@@ -3,7 +3,7 @@ MAINTAINER d9magai
 
 ENV AWSSDKCPP_PREFIX /opt/aws-sdk-cpp
 ENV AWSSDKCPP_SRC_DIR $AWSSDKCPP_PREFIX/src
-ENV AWSSDKCPP_VERSION 0.13.14
+ENV AWSSDKCPP_VERSION 1.0.9
 ENV AWSSDKCPP_ARCHIVE_URL https://github.com/awslabs/aws-sdk-cpp/archive/${AWSSDKCPP_VERSION}.tar.gz
 ENV PLANESTRAVELER_CMAKE_EL_EPEL_URL https://copr.fedorainfracloud.org/coprs/planestraveler/cmake-for-el/repo/epel-7/planestraveler-cmake-for-el-epel-7.repo
 
