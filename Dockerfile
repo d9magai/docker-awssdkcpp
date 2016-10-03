@@ -26,5 +26,5 @@ RUN mkdir -p $AWSSDKCPP_SRC_DIR \
     && make -s \
     && make -s install \
     && rm -rf $AWSSDKCPP_SRC_DIR
-RUN echo "$AWSSDKCPP_PREFIX/lib/linux/intel64/" > /etc/ld.so.conf.d/awssdkcpp.conf && ldconfig
+RUN echo "$AWSSDKCPP_PREFIX/lib/" > /etc/ld.so.conf.d/awssdkcpp.conf && ldconfig
 
