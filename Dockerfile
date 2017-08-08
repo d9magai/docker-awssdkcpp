@@ -1,8 +1,6 @@
 FROM alpine
 MAINTAINER d9magai
 
-ENV AWSSDKCPP_PREFIX /opt/aws-sdk-cpp
-ENV AWSSDKCPP_SRC_DIR $AWSSDKCPP_PREFIX/src
 ENV AWSSDKCPP_VERSION 1.1.23
 ENV AWSSDKCPP_ARCHIVE_URL https://github.com/awslabs/aws-sdk-cpp/archive/${AWSSDKCPP_VERSION}.tar.gz
 
@@ -13,14 +11,12 @@ RUN apk add --no-cache --virtual=builddeps \
         openssl-dev     \
         curl            \
         curl-dev        \
-        zlib-dev        
-
-RUN mkdir -p $AWSSDKCPP_SRC_DIR \
-    && curl --insecure -sL $AWSSDKCPP_ARCHIVE_URL | tar -xz -C $AWSSDKCPP_SRC_DIR \
-    && cd $AWSSDKCPP_SRC_DIR/aws-sdk-cpp-$AWSSDKCPP_VERSION \
-    && cmake . -DCMAKE_INSTALL_PREFIX=$AWSSDKCPP_PREFIX \
+        zlib-dev        \
+    && curl -sL $AWSSDKCPP_ARCHIVE_URL | tar -xz \
+    && cd /aws-sdk-cpp-$AWSSDKCPP_VERSION \
+    && cmake . \
+    && rm -rf /aws-sdk-cpp-$AWSSDKCPP_VERSION/aws-cpp-sdk-ec2/ \
     && make -s \
     && make -s install \
-    && rm -rf $AWSSDKCPP_SRC_DIR
-RUN echo "$AWSSDKCPP_PREFIX/lib/" > /etc/ld.so.conf.d/awssdkcpp.conf && ldconfig
+    && rm -rf /aws-sdk-cpp-$AWSSDKCPP_VERSION
 
