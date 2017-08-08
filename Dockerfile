@@ -1,4 +1,4 @@
-FROM debian
+FROM alpine
 MAINTAINER d9magai
 
 ENV AWSSDKCPP_PREFIX /opt/aws-sdk-cpp
@@ -6,18 +6,14 @@ ENV AWSSDKCPP_SRC_DIR $AWSSDKCPP_PREFIX/src
 ENV AWSSDKCPP_VERSION 1.1.8
 ENV AWSSDKCPP_ARCHIVE_URL https://github.com/awslabs/aws-sdk-cpp/archive/${AWSSDKCPP_VERSION}.tar.gz
 
-RUN buildDeps='\
-        g++ \
-        make \
-        cmake \
-        curl \
-        zlib1g-dev \
-        libcurl4-openssl-dev \
-        libssl-dev \
-        uuid-dev' \
-    && set -x \
-    && apt-get update && apt-get install -y $buildDeps --no-install-recommends \
-    && rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache --virtual=builddeps \
+        g++             \
+        make            \
+        cmake           \
+        openssl-dev     \
+        curl            \
+        curl-dev        \
+        zlib-dev        
 
 RUN mkdir -p $AWSSDKCPP_SRC_DIR \
     && curl --insecure -sL $AWSSDKCPP_ARCHIVE_URL | tar -xz -C $AWSSDKCPP_SRC_DIR \
